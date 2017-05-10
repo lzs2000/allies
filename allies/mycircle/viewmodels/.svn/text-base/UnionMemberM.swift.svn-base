@@ -1,0 +1,88 @@
+//
+//  UnionMemberM.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxDataSources
+import RxCocoa
+import RxSwift
+import Moya
+import SwiftyUserDefaults
+
+struct UnionMemberSection {
+    var items: [Item]
+    
+}
+extension UnionMemberSection: SectionModelType {
+    
+    typealias Item = MemberInfo
+    
+    init(original: UnionMemberSection, items: [UnionMemberSection.Item]) {
+        self = original
+        self.items = items
+    }
+}
+
+final class UnionMemberM: NSObject, ViewModelType {
+    
+//    var community_uid:String = ""
+//    
+//    func setUid(CommunityUid c_uid:String){
+//        self.community_uid = c_uid
+//    }
+    
+    typealias Output = UnionMemberOutput
+    
+    struct UnionMemberOutput {
+        
+        let section: Driver<[UnionMemberSection]>
+        let refreshCommand = PublishSubject<Int>()
+        let refreshTrigger = PublishSubject<Void>()
+        let dataSource = RxTableViewSectionedReloadDataSource<UnionMemberSection>()
+        
+    }
+    
+    fileprivate let _bricks = Variable<CommunityDetailData>(CommunityDetailData())
+    func transform(CommunityUid c_uid:String) -> UnionMemberM.UnionMemberOutput {
+        
+        let section = _bricks.asObservable().map({ (bricks) -> [UnionMemberSection] in
+            return [UnionMemberSection(items: bricks.data.community_info.member_info)]
+            
+        })
+            .asDriver(onErrorJustReturn: [])
+        
+        let output = Output(section: section)
+        
+        output.refreshCommand
+            .flatMapLatest { event in provider.request(.obtainCommunityDetail(Defaults[.user_uid]!,c_uid)) }
+            .subscribe({ [weak self] (event) in
+                output.refreshTrigger.onNext()
+                switch event {
+                case let .next(response):
+                    do {
+                        let data = try response.mapModel(CommunityDetailData.self)
+                        
+                        self?._bricks.value = data
+                    }catch {
+                        self?._bricks.value = CommunityDetailData()
+                    }
+                    break
+                case let .error(error):
+                    print( error)
+                    output.refreshTrigger.onError(error);
+                    break
+                default:
+                    break
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        return output
+    }
+    
+}
+

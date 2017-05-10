@@ -1,0 +1,71 @@
+//
+//  ActivityCenterData.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import Foundation
+import HandyJSON
+
+//{
+//    "code": 200,
+//    "data": {
+//        "promotion_info": [
+//        {
+//        "alias": "yxmf",
+//        "banner_image": "http://activity.dkongjian.cn/2017/04/28/1493372905502-uuafsi67p28.png",
+//        "community_uid": "43025077671498879",
+//        "created_at": "2017-04-28 17:48:12",
+//        "created_by": "42790572489971017",
+//        "end_date": "2017-04-29 17:47:59",
+//        "latitude": "30.18826",
+//        "logo_url": "",
+//        "longitude": "120.1797",
+//        "mall_uid": "",
+//        "order_count": 0,
+//        "organizer": "主办方",
+//        "organizer_address": "杭州市滨江区建业路长河街道滨安路1180号",
+//        "organizer_phone": "18668054318",
+//        "payment_type": "TYP_FULL_PAY",
+//        "print_type": "",
+//        "promotion_name": "1分钱活动",
+//        "promotion_type": "TYP_CARD",
+//        "promotion_uid": "43025077671517693",
+//        "shop_uid": "42790572489997820",
+//        "start_date": "2017-04-28 17:46:13",
+//        "status": "已结束",
+//        "sub_promotion_uid": "43025077671517694",
+//        "updated_at": "2017-04-28 17:48:12",
+//        "updated_by": "",
+//        "vendor_uid": "42790572489997819",
+//        "verification_end_date": "2017-04-29 17:47:59",
+//        "verification_start_date": "2017-04-28 17:46:00"
+//        }
+//        ]
+//    },
+//    "error_msg": "",
+//    "request_id": ""
+//}
+
+struct ActivityCenter:HandyJSON {
+    let promotion_name: String = ""
+    let start_date: String = ""
+    let end_date:  String = ""
+    let status:  String = ""
+    let banner_image: String = ""
+    
+    let browseCount: Int = 0
+    let signUpCount: Int = 0
+    
+}
+
+struct PromotionInfo: HandyJSON{
+    let promotion_info:[ActivityCenter] = []
+}
+
+struct ActivityCenterData: HandyJSON {
+    var code: Int = 0
+    var data: PromotionInfo = PromotionInfo()
+}

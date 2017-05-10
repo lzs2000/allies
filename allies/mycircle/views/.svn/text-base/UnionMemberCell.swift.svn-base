@@ -1,0 +1,58 @@
+//
+//  UnionMemberCell.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class UnionMemberCell: UITableViewCell {
+static let Identifier = "UnionMemberCell"
+    
+    @IBOutlet weak var leftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var circleOwnerL: UILabel!
+    @IBOutlet weak var promotePersonL: UILabel!
+    @IBOutlet weak var brandN: UILabel!
+    @IBOutlet weak var unionMasterL: UILabel!
+    @IBOutlet weak var unionImg: UIImageView!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+   
+    func configureWithUnionMember(member: MemberInfo) {
+        
+        if member.is_owner {
+            self.circleOwnerL.text = " 圈主 "
+            leftConstraint.constant = 10
+        } else {
+            self.circleOwnerL.text = ""
+            leftConstraint.constant = 0
+        }
+       
+        let url = URL(string: (member.member_avatar_url ))
+        //        下载过程中在图片里转菊花
+        unionImg.kf.indicatorType = .activity
+        //        options 里设置下载完成后图片渐显效果
+        unionImg.kf.setImage(with: url, placeholder: UIImage(named: "myCircle"), options: [.transition(.fade(0.2))])
+        
+         brandN.text = "品牌: " + "\(member.brand_name)"
+         promotePersonL.text = "推广人员\(member.guide_count)名"
+        if (member.member_phone as NSString).length > 8 {
+            unionMasterL.text = "\(member.member_name) " + "*" + (member.member_phone as NSString).substring(from: 7)
+        }
+        
+        
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}

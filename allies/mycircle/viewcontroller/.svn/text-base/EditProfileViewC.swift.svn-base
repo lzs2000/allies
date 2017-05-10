@@ -1,0 +1,50 @@
+//
+//  EditProfileViewC.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/13.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class EditProfileViewC: UIViewController {
+
+     var  myCircle = MyCircle()
+    
+    @IBOutlet weak var circleNameTF: UITextField!
+    @IBOutlet weak var circleNameBtn: UIButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "编辑联盟圈信息"
+       // configMyCircle()
+
+        // Do any additional setup after loading the view.
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+}
+
+extension EditProfileViewC {
+//    func configMyCircle() {
+//       circleNameBtn.rx.tap
+//        .flatMapLatest { [weak self] _ in
+//            return UIImagePickerController.rx.createWithParent(self) { picker in
+//                picker.sourceType = .photoLibrary
+//                picker.allowsEditing = true
+//                }
+//                .flatMap { $0.rx.didFinishPickingMediaWithInfo }
+//                .take(1)
+//            }
+//            .map { info in
+//             return info[UIImagePickerControllerEditedImage] as? UIImage
+//                           }
+//            .bind(to: circleNameBtn.imageView.rx.image)
+//            .disposed(by: disposeBag)
+//        
+//    }
+}

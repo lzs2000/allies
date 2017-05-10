@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ActivityCenterCell" rowHeight="250" id="Nch-IH-Zfe" customClass="ActivityCenterCell" customModule="allies" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="369" height="189"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nch-IH-Zfe" id="EmW-Hv-Psp">
+                <rect key="frame" x="0.0" y="0.0" width="369" height="188.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CMg-FG-nY4">
+                        <rect key="frame" x="0.0" y="0.0" width="369" height="1"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="93s-ob-DcM"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="331活动" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wFY-kr-mjJ">
+                        <rect key="frame" x="15" y="10" width="56" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="活动时间: 2017年3月31日 17:55 至 6月30日 17: 55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42D-sb-bsm">
+                        <rect key="frame" x="15" y="36" width="299.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="lufei" translatesAutoresizingMaskIntoConstraints="NO" id="4Sz-52-oma">
+                        <rect key="frame" x="15" y="60" width="339" height="118.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="浏览量: 0  " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q67-Kd-H5w">
+                        <rect key="frame" x="10" y="157.5" width="71.5" height="21"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="zwB-wQ-DCQ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报名数: 0   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B1z-qh-qPx">
+                        <rect key="frame" x="89" y="158" width="75.5" height="21"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="42D-sb-bsm" firstAttribute="top" secondItem="wFY-kr-mjJ" secondAttribute="bottom" constant="8" id="1BD-YW-UXA"/>
+                    <constraint firstItem="CMg-FG-nY4" firstAttribute="top" secondItem="EmW-Hv-Psp" secondAttribute="top" id="2ce-J0-6rH"/>
+                    <constraint firstItem="4Sz-52-oma" firstAttribute="top" secondItem="42D-sb-bsm" secondAttribute="bottom" constant="8" id="3Le-jf-Vrd"/>
+                    <constraint firstAttribute="bottom" secondItem="Q67-Kd-H5w" secondAttribute="bottom" constant="10" id="4MG-TL-ETc"/>
+                    <constraint firstItem="wFY-kr-mjJ" firstAttribute="leading" secondItem="EmW-Hv-Psp" secondAttribute="leading" constant="15" id="9gI-4N-hRO"/>
+                    <constraint firstItem="4Sz-52-oma" firstAttribute="leading" secondItem="EmW-Hv-Psp" secondAttribute="leading" constant="15" id="CTB-0L-ALb"/>
+                    <constraint firstItem="Q67-Kd-H5w" firstAttribute="leading" secondItem="EmW-Hv-Psp" secondAttribute="leading" constant="10" id="NGh-F6-Rw5"/>
+                    <constraint firstItem="B1z-qh-qPx" firstAttribute="leading" secondItem="Q67-Kd-H5w" secondAttribute="trailing" constant="7.5" id="TLK-BO-YwS"/>
+                    <constraint firstItem="B1z-qh-qPx" firstAttribute="baseline" secondItem="Q67-Kd-H5w" secondAttribute="baseline" id="U9h-7m-txX"/>
+                    <constraint firstAttribute="trailing" secondItem="4Sz-52-oma" secondAttribute="trailing" constant="15" id="awz-ZD-Fac"/>
+                    <constraint firstItem="wFY-kr-mjJ" firstAttribute="top" secondItem="EmW-Hv-Psp" secondAttribute="top" constant="10" id="h52-sd-W6P"/>
+                    <constraint firstAttribute="trailing" secondItem="CMg-FG-nY4" secondAttribute="trailing" id="kto-F8-jAx"/>
+                    <constraint firstItem="CMg-FG-nY4" firstAttribute="leading" secondItem="EmW-Hv-Psp" secondAttribute="leading" id="pND-9E-Tr5"/>
+                    <constraint firstAttribute="bottom" secondItem="4Sz-52-oma" secondAttribute="bottom" constant="10" id="t7x-j7-WWN"/>
+                    <constraint firstItem="42D-sb-bsm" firstAttribute="leading" secondItem="EmW-Hv-Psp" secondAttribute="leading" constant="15" id="tRq-FM-WSG"/>
+                    <constraint firstItem="B1z-qh-qPx" firstAttribute="height" secondItem="Q67-Kd-H5w" secondAttribute="height" id="uGx-tq-2IN"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="activityImg" destination="4Sz-52-oma" id="dI6-mz-zU7"/>
+                <outlet property="activityNameL" destination="wFY-kr-mjJ" id="Msh-aM-J2F"/>
+                <outlet property="activityTimeL" destination="42D-sb-bsm" id="7Aw-Sz-UDT"/>
+                <outlet property="browseCountL" destination="Q67-Kd-H5w" id="dQK-VE-xq2"/>
+                <outlet property="signUpCountL" destination="B1z-qh-qPx" id="Vav-7h-oRf"/>
+            </connections>
+            <point key="canvasLocation" x="21.5" y="36.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="lufei" width="120" height="120"/>
+    </resources>
+</document>

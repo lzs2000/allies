@@ -1,0 +1,68 @@
+//
+//  MyPromotionTabVC.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/18.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxCocoa
+import RxSwift
+import RxDataSources
+
+let dataAry = RxTableViewSectionedReloadDataSource<SectionModel<String, ActivityCenter>>()
+let viewModel = ActivityCenterViewM()
+let disposeBag = DisposeBag()
+var tableview = UITableView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH))
+
+
+class MyPromotionTabVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupTabV()
+        
+        
+    }
+
+   }
+extension MyPromotionTabVC {
+    func setupTabV() {
+        tableview.register(UINib.init(nibName: ActivityCenterCell.Identifier, bundle: Bundle.main), forCellReuseIdentifier: ActivityCenterCell.Identifier)
+        
+        self.view.addSubview(tableview)
+        self.view.backgroundColor = UIColor.white
+        self.title = "我的推广"
+        tableview.rowHeight = 180
+        tableview.tableFooterView = UIView()
+        
+     
+        dataAry.configureCell = {
+            _, tableview, indexPath, data  in
+            let cell = tableview.dequeueReusableCell(withIdentifier: ActivityCenterCell.Identifier, for: indexPath)
+                as! ActivityCenterCell
+            cell.configureWithMyActivity(activity: data)
+            return cell
+        }
+        
+        tableview.delegate = nil
+        tableview.dataSource = nil
+        
+//        viewModel.getMydata()
+//            .bindTo(tableview.rx.items(dataSource: dataAry))
+//            .addDisposableTo(disposeBag)
+        
+        tableview.rx
+            .setDelegate(tableview as! UIScrollViewDelegate )
+            .addDisposableTo(disposeBag)
+        
+
+    }
+}
+
+extension MyPromotionTabVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
+    }
+}

@@ -1,0 +1,33 @@
+//
+//  MemberDetailVC.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/28.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class MemberDetailVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "成员详情页"
+
+        // Do any additional setup after loading the view.
+    }
+
+ 
+    @IBAction func drCodeClick(_ sender: UIButton) {
+        
+    }
+   
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    
+}

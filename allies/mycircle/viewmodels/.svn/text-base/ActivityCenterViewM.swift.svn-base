@@ -1,0 +1,102 @@
+//
+//  ActivityCenterViewM.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxDataSources
+import RxCocoa
+import RxSwift
+import Moya
+import SwiftyUserDefaults
+
+struct ActivityCenterSection {
+    var items: [Item]
+    
+}
+extension ActivityCenterSection: SectionModelType {
+    
+    typealias Item = ActivityCenter
+    
+    init(original: ActivityCenterSection, items: [ActivityCenterSection.Item]) {
+        self = original
+        self.items = items
+    }
+}
+
+
+
+class ActivityCenterViewM: NSObject, ViewModelType
+{
+    typealias Output = ActivityCenterOutput
+    
+    struct ActivityCenterOutput {
+        
+        let section: Driver<[ActivityCenterSection]>
+        let refreshCommand = PublishSubject<Int>()
+        let refreshTrigger = PublishSubject<Void>()
+        let dataSource = RxTableViewSectionedReloadDataSource<ActivityCenterSection>()
+        
+    }
+    
+    fileprivate let _bricks = Variable<ActivityCenterData>(ActivityCenterData())
+    func transform(CommunityUid c_uid:String) -> ActivityCenterViewM.ActivityCenterOutput {
+        
+        let section = _bricks.asObservable().map({ (bricks) -> [ActivityCenterSection] in
+            return [ActivityCenterSection(items: bricks.data.promotion_info)]
+            
+        })
+            .asDriver(onErrorJustReturn: [])
+        
+        let output = Output(section: section)
+        
+        output.refreshCommand
+            .flatMapLatest { event in provider.request(.obtainPromotionsByCommunity(c_uid)) }
+            .subscribe({ [weak self] (event) in
+                output.refreshTrigger.onNext()
+                switch event {
+                case let .next(response):
+                    do {
+                        let data = try response.mapModel(ActivityCenterData.self)
+                        
+                        self?._bricks.value = data
+                    }catch {
+                        self?._bricks.value = ActivityCenterData()
+                    }
+                    break
+                case let .error(error):
+                    print( error)
+                    output.refreshTrigger.onError(error);
+                    break
+                default:
+                    break
+                }
+            })
+            .addDisposableTo(disposeBag)
+        
+        return output
+    }
+    
+}
+
+
+
+//
+//{
+//    func getMydata() -> Observable<[SectionModel<String, ActivityCenter>]> {
+//        return Observable.create({ (observer) -> Disposable in
+//            let mydata  = [ActivityCenter(activityName:"小武d3圈子", activityTime:"2017-8-9", browseCount:2, signUpCount:2, activityImg: "lufei")
+//            ]
+//            
+//
+//            let section = [SectionModel(model:"", items: mydata), SectionModel(model:"我加入的圈子(1)", items:mydata)]
+//            observer.onNext(section)
+//            observer.onCompleted()
+//            return Disposables.create()
+//        })
+//    }
+//
+//}

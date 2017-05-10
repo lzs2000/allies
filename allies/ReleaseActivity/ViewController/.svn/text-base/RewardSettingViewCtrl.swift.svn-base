@@ -1,0 +1,36 @@
+//
+//  RewardSettingViewCtrl.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/5/3.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
+
+class RewardSettingViewCtrl: UIViewController,UITableViewDelegate {
+
+    var tableView: UITableView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: screenW, height: screenH), style: UITableViewStyle.plain)
+        tableView.separatorStyle = UITableViewCellSeparatorStyle(rawValue: 1)!
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        view.addSubview(tableView)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+
+}

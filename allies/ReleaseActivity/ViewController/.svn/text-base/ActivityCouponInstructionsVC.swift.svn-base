@@ -1,0 +1,70 @@
+//
+//  ActivityCouponInstructionsVC.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/4/28.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import SnapKit
+
+class ActivityCouponInstructionsVC: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.title = "卡卷使用说明"
+        // Do any additional setup after loading the view.
+        self.view.backgroundColor = backGroundColor
+        self.navigationController?.view.backgroundColor = UIColor.black
+        
+        let topBackView: UIView = UIView(frame: CGRect(x: 0, y: 64, width: screenW, height: 260))
+        
+        topBackView.backgroundColor = UIColor.white
+        self.view.addSubview(topBackView)
+        
+        let couponInstructionsLabel:UILabel = UILabel(frame: CGRect(x: 10, y: 10, width: screenW - 20, height: 240))
+        couponInstructionsLabel.text = "1.每个用户仅限使用一个报名凭证(截图不可用);\n2.本次活动最终解释权归商家所有"
+        couponInstructionsLabel.textColor = UIColor.black
+        couponInstructionsLabel.textAlignment = NSTextAlignment.left
+        couponInstructionsLabel.numberOfLines = 0
+        topBackView.addSubview(couponInstructionsLabel)
+        
+        let sureButton: UIButton = UIButton(type: UIButtonType.custom)
+        self.view.addSubview(sureButton)
+        
+        sureButton.backgroundColor = UIColor.blue
+        sureButton.setTitle("确定", for: UIControlState.normal)
+        sureButton.snp.makeConstraints { (make) in
+            make.left.equalTo(10)
+            make.top.equalTo(couponInstructionsLabel.snp.bottom).offset(30)
+            make.right.equalTo(-10)
+            make.height.equalTo(40)
+        }
+        
+        sureButton.addTarget(self, action: #selector(sureButtonClick), for: .touchUpInside)
+        
+    }
+
+    func sureButtonClick() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}

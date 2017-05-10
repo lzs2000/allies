@@ -1,0 +1,36 @@
+//
+//  ActivityImageCell.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/4/25.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class ActivityImageCell: UITableViewCell {
+
+    static let Identifier = "ActivityImageIdentifier"
+    
+    @IBOutlet weak var activityImageView: UIImageView!
+    @IBOutlet weak var deleteButton: UIButton!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        self.backgroundColor = backgroundColor
+    }
+
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    func configureWithData(imageData:CommonTemplateModel) {
+
+        activityImageView?.image = UIImage(named:imageData.imageUrl)
+        deleteButton.setBackgroundImage(UIImage(named:"ico_activityDelete"), for: UIControlState.normal)
+    }
+    
+}

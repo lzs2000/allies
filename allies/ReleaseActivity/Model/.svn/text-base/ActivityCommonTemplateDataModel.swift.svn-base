@@ -1,0 +1,22 @@
+//
+//  ActivityCommonTemplateDataModel.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/4/18.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import Foundation
+
+//MARK: - Equtable Protocol implementation
+func ==(lhs: CommonTemplateModel, rhs: CommonTemplateModel) -> Bool {
+    
+    return (lhs.imageUrl == rhs.imageUrl && lhs.titleContent == rhs.titleContent /*&& lhs.textFieldValue == rhs.textFieldValue*/)
+}
+
+
+struct CommonTemplateModel:Equatable {
+    let imageUrl: String
+    let titleContent: String
+//    var textFieldValue: String
+}

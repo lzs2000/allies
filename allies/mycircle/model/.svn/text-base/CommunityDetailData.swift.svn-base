@@ -1,0 +1,44 @@
+//
+//  CommunityDetailData.swift
+//  allies
+//
+//  Created by 温星 on 2017/5/2.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import Foundation
+import HandyJSON
+
+struct MemberInfo:HandyJSON{
+    
+    let  member_avatar_url: String = ""
+    let  community_uid: String = ""
+    let bind_shop_brand1_name: String = ""
+    let member_name:String = ""
+    let member_phone: String = ""
+    let brand_name: String = ""
+    let guide_count: Int = 0
+    let is_owner: Bool = false
+    
+}
+
+struct DataModel:  HandyJSON {
+    let community_info:Community = Community()
+}
+
+struct Community:  HandyJSON {
+    
+    let community_avator_url: String = ""
+    let community_name: String = ""
+    let community_uid: String = ""
+    let invite_qrcode_url:String = ""
+    let member_info: [MemberInfo] = []
+    
+    
+}
+
+
+struct CommunityDetailData: HandyJSON {
+    var code: Int = 0
+    var data: DataModel = DataModel()
+}

@@ -1,0 +1,45 @@
+//
+//  MyUnionCircleModel.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/11.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import Foundation
+import RxSwift
+import RxCocoa
+import Moya
+import RxDataSources
+import SwiftyUserDefaults
+
+let dispose = DisposeBag()
+let provider = RxMoyaProvider<ApiManager>()
+
+//此 view model已经转至MyUnionCircleVM
+class MyUnionCircleModel: NSObject {
+  
+    func getMydata() -> Observable<[SectionModel<String, MyCircle>]> {
+        return
+            provider.request(.searchActiveList( Defaults[.user_uid]!,  "yxmf"))
+            .mapModel(ActivityList.self)
+            .map{ (model)  in
+                if model.code == 200 {
+                return
+                    [ 
+//                    SectionModel(model:"my_created_community", items: (model.data.my_created_community) ?? []),
+//                    SectionModel(model:"my_participated_community", items:(model.data?.my_participated_community) ?? [])
+                    ]
+                }
+                else {
+                    return []
+                }
+        
+                
+            }
+        .shareReplayLatestWhileConnected()
+        }
+    
+    
+    
+}

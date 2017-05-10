@@ -1,0 +1,95 @@
+//
+//  File.swift
+//  allies
+//
+//  Created by 温星 on 17/3/31.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import Foundation
+import SwiftyUserDefaults
+
+import Moya
+
+enum ApiManager{
+    case login(String, String)
+    case getVerifiCode(String)
+    case searchActiveList(String, String)
+
+}
+
+extension DefaultsKeys {
+    static let user_uid = DefaultsKey<Int?>("user_uid")
+}
+
+
+extension ApiManager: TargetType {
+    /// The target's base `URL`.
+    var baseURL: URL {
+        return URL.init(string: "http://testapi.dkongjian.cn/")!
+    }
+    
+    /// The path to be appended to `baseURL` to form the full `URL`.
+    var path: String {
+        switch self {
+        case .login:
+            return "user/authenticate.json"
+        case .getVerifiCode:
+            return "user/sendCode.json"
+        case .searchActiveList:
+            return "community/obtainMyCommunityList"
+
+        }
+        
+    }
+    
+    /// The HTTP method used in the request.
+    var method: Moya.Method {
+        switch self {
+        case .login:
+            return .post
+        case  .getVerifiCode:
+            return .post
+        case .searchActiveList:
+            return .post
+        }
+        return .get
+    }
+    
+    var parameters: [String: Any]? {
+        switch self {
+        case .login(let name, let pwd):
+            return ["phone": name, "code": pwd]
+        case .getVerifiCode(let code):
+            return ["phone": code]
+        case .searchActiveList(let user_uid, let alias):
+            return ["user_uid" : user_uid, "alias" :  alias]
+        default:
+            ()
+        }
+    }
+    
+    /// The method used for parameter encoding.
+    var parameterEncoding: ParameterEncoding {
+       // return URLEncoding.default
+        return JSONEncoding.default
+    }
+    
+    
+    
+    
+    /// Provides stub data for use in testing.
+    var sampleData: Data {
+        return "".data(using: String.Encoding.utf8)!
+    }
+    
+    /// The type of HTTP task to be performed.
+    var task: Task {
+        return .request
+    }
+    
+    /// Whether or not to perform Alamofire validation. Defaults to `false`.
+    var validate: Bool {
+        return false
+    }
+}

@@ -1,0 +1,65 @@
+//
+//  ActivityCommonTemplateCell.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/4/18.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class ActivityCommonTemplateCell: UITableViewCell {
+    
+    static let Identifier = "CommonTemplateIdentifier"
+    
+    @IBOutlet weak var tagImageView: UIImageView!
+    @IBOutlet weak var tagNameLable: UILabel!
+    @IBOutlet weak var tagValueField: UITextField!
+    
+//    var cellTypetag: Bool = false
+    
+    //    static let cellHeight = 60
+    
+    var valueLable:UILabel?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
+    }
+    
+    func configureWithData(commonData:CommonTemplateModel) {
+        
+        if commonData.titleContent.isEmpty {
+            return
+        }
+        
+//        if cellTypetag {
+//            tagValueField.isHidden = true
+//        }
+        
+        self.imageView?.image = UIImage(named:commonData.imageUrl)
+        self.textLabel?.text = commonData.titleContent
+        
+        print(commonData.imageUrl, commonData.titleContent)
+    }
+    
+    override func layoutSubviews() {
+        
+        super.layoutSubviews()
+        
+        self.imageView?.frame = CGRect(x: 10, y: 12, width: 20, height: 20)
+        self.imageView?.contentMode = UIViewContentMode(rawValue: 1)!;
+        
+        var tmpFrame: CGRect = self.textLabel!.frame;
+        tmpFrame.origin.x = 40;
+        self.textLabel?.frame = tmpFrame;
+    }
+
+}

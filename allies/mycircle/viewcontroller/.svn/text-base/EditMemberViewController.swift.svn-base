@@ -1,0 +1,27 @@
+//
+//  EditMemberViewController.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/18.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+
+class EditMemberViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "编辑个人信息"
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+
+   
+
+}

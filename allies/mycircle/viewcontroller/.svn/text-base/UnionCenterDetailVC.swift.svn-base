@@ -1,0 +1,108 @@
+//
+//  UnionCenterDetailVC.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxCocoa
+import RxSwift
+
+class UnionCenterDetailVC: UIViewController {
+
+    @IBOutlet weak var unionMemberBtn: UIButton!
+    @IBOutlet weak var activityBtn: UIButton!
+    @IBOutlet weak var unionMemberV: UnionMemberTabV!
+    @IBOutlet weak var activityV: ActivityCenterTableV!
+    
+    @IBOutlet weak var circleV: UIView!
+    @IBOutlet weak var portraitImg: UIImageView!
+    @IBOutlet weak var circleNameL: UILabel!
+    
+    var  myCircle = MyCircle()
+    
+    
+    let disposeBag = DisposeBag()
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+    }
+
+   
+    @IBAction func addBtnClick(_ sender: Any) {
+        
+        
+    }
+}
+
+extension UnionCenterDetailVC {
+    func setupUI() {
+        self.title = "我的联盟活动圈"
+        
+        activityV.tableViewConfig(CommunityUid: myCircle.community_uid)
+        unionMemberV.tableViewConfig(CommunityUid: myCircle.community_uid)
+        configCircle()
+        
+        activityV.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: screenW, height: 1))
+        activityV.tableFooterView?.backgroundColor = seperatorColor
+        unionMemberV.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: screenW, height: 1))
+        unionMemberV.tableFooterView?.backgroundColor = seperatorColor
+        
+        activityBtn.setTitleColor(buttonColor, for: .selected)
+        activityBtn.setTitleColor(UIColor.black, for: .normal)
+        unionMemberBtn.setTitleColor(buttonColor, for: .selected)
+        unionMemberBtn.setTitleColor(UIColor.black, for: .normal)
+        activityBtn.isSelected = true
+        self.unionMemberV.isHidden = true
+        
+        activityBtn.rx.tap
+            .subscribe(onNext: {
+                if self.unionMemberBtn.isSelected {
+                    self.unionMemberBtn.isSelected = !self.unionMemberBtn.isSelected
+                }
+                self.activityBtn.isSelected = !self.unionMemberBtn.isSelected
+                self.unionMemberV.isHidden = true
+                self.activityV.isHidden = false
+            })
+        .addDisposableTo(disposeBag)
+        
+        unionMemberBtn.rx.tap
+            .subscribe(onNext: {
+                if self.activityBtn.isSelected {
+                    self.activityBtn.isSelected = !self.activityBtn.isSelected
+                }
+                self.unionMemberBtn.isSelected = !self.unionMemberBtn.isSelected
+                self.activityV.isHidden = true
+                self.unionMemberV.isHidden = false
+            })
+            .addDisposableTo(disposeBag)
+        
+    }
+    
+    func configCircle() {
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(circleVTap))
+        circleV.addGestureRecognizer(tapGesture)
+        
+        let url = URL(string: (myCircle.community_avator_url ))
+        portraitImg.kf.indicatorType = .activity
+        portraitImg.kf.setImage(with: url, placeholder: UIImage(named: "myCircle"), options: [.transition(.fade(0.2))])
+        
+        circleNameL.text = myCircle.community_name
+        self.title = myCircle.community_name
+        self.unionMemberBtn.setTitle( "联盟成员(" + "\(myCircle.member_count)"+")", for: .normal)
+
+    }
+}
+
+extension UnionCenterDetailVC {
+    
+    func circleVTap() {
+        let storyBoard = UIStoryboard(name: "mine", bundle: nil)
+        let editV = storyBoard.instantiateViewController(withIdentifier: "EditProfileViewC") as! EditProfileViewC
+        editV.myCircle = myCircle
+        self.navigationController?.pushViewController(editV, animated: true)
+    }
+}

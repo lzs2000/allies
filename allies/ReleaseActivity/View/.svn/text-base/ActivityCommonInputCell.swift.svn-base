@@ -1,0 +1,39 @@
+//
+//  ActivityCommonInputCell.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/4/25.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class ActivityCommonInputCell: UITableViewCell {
+
+    @IBOutlet weak var tagImageView: UIImageView!
+    @IBOutlet weak var textFieldView: UITextField!
+    
+    static let Identifier = "CommonInputIdentifier"
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+ 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+    
+    func configueCellWithData(inputData:CommonTemplateModel) {
+        if inputData.titleContent.isEmpty {
+            return
+        }
+        
+        self.tagImageView?.image = UIImage(named:inputData.imageUrl)
+        self.textFieldView?.text = inputData.titleContent
+        
+        print(inputData.imageUrl, inputData.titleContent)
+    }
+}

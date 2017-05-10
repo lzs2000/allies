@@ -1,0 +1,68 @@
+//
+//  UnionMemberTabV.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxSwift
+import RxDataSources
+import RxCocoa
+
+class UnionMemberTabV: UITableView {
+    // MARK: - configTabView
+    let dataAry = RxTableViewSectionedReloadDataSource<SectionModel<String, MemberInfo>>()
+    let disposeBag = DisposeBag()
+    let viewmodel = UnionMemberM()
+    
+}
+
+extension UnionMemberTabV {
+    func tableViewConfig(CommunityUid c_uid:String) {
+//        viewmodel.setUid(CommunityUid: c_uid)
+        let outputStuff = viewmodel.transform(CommunityUid: c_uid)
+        
+        outputStuff.section
+            .drive(self.rx.items(dataSource: outputStuff.dataSource))
+            .addDisposableTo(disposeBag)
+        
+        outputStuff.refreshTrigger
+            .observeOn(MainScheduler.instance)
+            .subscribe { [unowned self] (event) in
+                self.refreshControl?.endRefreshing()
+                switch event {
+                case .error(_):
+                    // NoticeBar(title: "Network Disconnect!", defaultType: .error).show(duration: 2.0, completed: nil)
+                    break
+                case .next(_):
+                    self.reloadData()
+                    break
+                default:
+                    break
+                }
+            }
+            .addDisposableTo(disposeBag)
+        
+        
+        outputStuff.dataSource.configureCell = {
+                        _, tableview, indexPath, data  in
+                        let cell = self.dequeueReusableCell(withIdentifier: UnionMemberCell.Identifier, for: indexPath)
+                            as! UnionMemberCell
+                        cell.configureWithUnionMember(member: data)
+                        return cell
+                    }
+        
+        outputStuff.refreshCommand.onNext(1)//进入页面进行下拉刷新
+        
+        self.rx
+            .setDelegate(self as! UIScrollViewDelegate)
+            .addDisposableTo(self.disposeBag)
+        
+        
+    }
+    
+    
+    
+}

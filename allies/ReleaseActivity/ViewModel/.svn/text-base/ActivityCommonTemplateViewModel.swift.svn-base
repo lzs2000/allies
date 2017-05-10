@@ -1,0 +1,62 @@
+//
+//  ActivityCommonTemplateViewModel.swift
+//  allies
+//
+//  Created by 徐霖 on 2017/4/18.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+import RxSwift
+import RxDataSources
+
+class ActivityCommonTemplateViewModel: NSObject {
+    
+//    var imageName:String? = nil
+//    var titleName:String? = nil
+    
+    func getCommonTemplateModelData() -> Observable<[SectionModel<String, CommonTemplateModel>]> {
+        
+        return Observable.create({ (observer) -> Disposable in
+            let themeModel = [CommonTemplateModel(imageUrl:"",
+                                                  titleContent:""),
+                              CommonTemplateModel(imageUrl:"ico_activityName",
+                                                  titleContent:"活动名称(必填)")]
+
+            let commonModelData = [CommonTemplateModel(imageUrl:"ico_activityTime",
+                                                       titleContent:"开始时间(必填)"),
+                                   CommonTemplateModel(imageUrl:"ico_activityTime",
+                                                       titleContent:"结束时间(必填)"),
+                                   CommonTemplateModel(imageUrl:"ico_activityLocation",
+                                                       titleContent:"活动地址(必填)"),
+                                   CommonTemplateModel(imageUrl:"ico_activityPhone",
+                                                       titleContent:"咨询电话(必填)")]
+            
+            let commonModelData2 = [CommonTemplateModel(imageUrl:"ico_activityCoupons",
+                                                        titleContent:"活动卡卷"),
+                                    CommonTemplateModel(imageUrl:"ico_activityAmount",
+                                                        titleContent:"发放数量"),
+                                    CommonTemplateModel(imageUrl:"ico_activityReward",
+                                                        titleContent:"推广奖励设置"),
+                                    CommonTemplateModel(imageUrl:"ico_activityCouponsInstructions",
+                                                        titleContent:"卡卷使用说明")]
+            
+//            "ico_activityLightspot","ico_activityBrand","ico_activityLegalRight"
+            let commonModelData3 = [CommonTemplateModel(imageUrl:"ico_activityLightspot",
+                                                        titleContent:""),
+                                    CommonTemplateModel(imageUrl:"ico_activityBrand",
+                                                        titleContent:""),
+                                    CommonTemplateModel(imageUrl:"ico_activityLegalRight",
+                                                        titleContent:"")]
+            
+            let section = [SectionModel(model:"", items: themeModel),
+                           SectionModel(model:"", items: commonModelData),
+                           SectionModel(model:"", items: commonModelData2),
+                           SectionModel(model:"", items: commonModelData3)]
+
+            observer.onNext(section)
+            observer.onCompleted()
+            return Disposables.create()
+        })
+    }
+}

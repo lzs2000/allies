@@ -1,0 +1,141 @@
+10
+
+dir
+93
+http://SunnyRain@www.svnchina.com/svn/allies/allies
+http://SunnyRain@www.svnchina.com/svn/allies
+
+
+
+2017-05-03T10:32:43.441801Z
+93
+zhenyz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+e0dd4156-1e33-46e2-a75a-83e824717b9d
+
+Base.lproj
+dir
+
+model
+dir
+
+
+
+delete
+
+viewControllers
+dir
+
+
+
+delete
+
+protocol
+dir
+
+Info.plist
+file
+
+
+
+
+2017-04-17T03:29:29.000000Z
+8c8799eba2f544754a78d000eefa10c3
+2017-04-17T03:27:04.449457Z
+39
+wenxing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1416
+
+AppDelegate.swift
+file
+
+
+
+
+2017-04-21T01:40:13.000000Z
+320f8dabc1dd37b9192d955e21c5a406
+2017-04-20T11:03:19.794208Z
+65
+wenxing
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2263
+
+mycircle
+dir
+
+login
+dir
+
+storyboards
+dir
+
+views
+dir
+
+
+
+delete
+
+tool
+dir
+
+ReleaseActivity
+dir
+
+Assets.xcassets
+dir
+

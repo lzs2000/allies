@@ -1,0 +1,45 @@
+//
+//  ActivityCenterCell.swift
+//  allies
+//
+//  Created by 刘璐璐 on 2017/4/14.
+//  Copyright © 2017年 温星. All rights reserved.
+//
+
+import UIKit
+
+class ActivityCenterCell: UITableViewCell {
+static let Identifier = "ActivityCenterCell"
+    
+    
+    @IBOutlet weak var signUpCountL: UILabel!
+    @IBOutlet weak var browseCountL: UILabel!
+    @IBOutlet weak var activityImg: UIImageView!
+    @IBOutlet weak var activityTimeL: UILabel!
+    @IBOutlet weak var activityNameL: UILabel!
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
+    func configureWithMyActivity(activity:ActivityCenter) {
+       signUpCountL.text = " 报名数: " + "\(activity.signUpCount) "
+        browseCountL.text = " 浏览量: " + "\(activity.browseCount) "
+        activityImg.image = UIImage(named: activity.banner_image)
+        let url = URL(string: (activity.banner_image ))
+
+        activityImg.kf.setImage(with: url, placeholder: UIImage(named: "myCircle"), options: [.transition(.fade(0.2))])
+
+        activityNameL.text = activity.promotion_name
+        activityTimeL.text = "活动时间: " + "\(activity.start_date)" + " 至 " + "\(activity.end_date)"
+               
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+}
